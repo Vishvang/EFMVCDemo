@@ -7,7 +7,8 @@ using System.Web.Optimization;
 using System.Web.Routing;
 
 using System.Data.Entity;
-using EFMVCDemo.EFConnect;
+//using EFMVCDemo.EFConnect;
+using EFMVCDemo.Data.Repository;
 
 namespace EFMVCDemo
 {
@@ -15,7 +16,10 @@ namespace EFMVCDemo
     {
         protected void Application_Start()
         {
-            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<EmployeeDBContext>());
+            //Database.SetInitializer(new DropCreateDatabaseIfModelChanges<EmployeeDBContext>());
+            //We Have to Use this parameter in this method now because we already extend this class to our new class 
+            //DBContextSeeder
+            Database.SetInitializer(new DBContextSeederRepository());
 
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
